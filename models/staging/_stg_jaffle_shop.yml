@@ -1,0 +1,16 @@
+sources:
+  - name: jaffle_shop
+    database: raw
+    schema: jaffle_shop
+    tables:
+      - name: customers 
+      - name: orders
+        config:
+          freshness:
+            warn_after:
+              count: 24
+              period: hour
+            error_after:
+              count: 30
+              period: day
+          loaded_at_field: TO_TIMESTAMP_TZ(_etl_loaded_at)
